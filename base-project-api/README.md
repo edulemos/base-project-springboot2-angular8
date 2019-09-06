@@ -1,7 +1,10 @@
-# base-project-api
+# BASE-PROJECT-API
  
- * spring boot 2
- * spring security / jwt
- * spring data
+### compile --> mvn clean package -Dmaven.test.skip=true
+### run --> java -jar target/base-project-api.jar
+### app config --> resources/application.properties
+### db console --> http://localhost:8080/h2-console
+
+
  
  

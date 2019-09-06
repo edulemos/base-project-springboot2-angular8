@@ -1,0 +1,8 @@
+.ui-fieldset-legend{
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.ui-fieldset-content{
+  min-height: 690px;
+}

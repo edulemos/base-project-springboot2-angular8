@@ -1,0 +1,29 @@
+<p-panel>
+  <p-header>
+    <div class="p-grid">
+      <div class="p-col-12">
+        BASE PROJECT FRONT
+      </div>
+
+    </div>
+  </p-header>
+  <p-fieldset legend="LOGIN">
+    <p-toast position="top-center"></p-toast>
+
+    <form [formGroup]="formLogin" (ngSubmit)="loginPerfom()" novalidate>
+
+    <br>
+    <span class="ui-inputgroup">
+      <input type="text" size="30" pInputText placeholder="Username" formControlName="username">&nbsp;
+      <p-message severity="error" text="Username is required" *ngIf="!formLogin.controls['username'].valid&&formLogin.controls['username'].dirty"></p-message>
+    </span>
+    <br>
+    <span class="ui-inputgroup">
+      <input type="password" pPassword size="30" [feedback]="false" formControlName="password">&nbsp;
+      <p-message severity="error" text="Password is required" *ngIf="!formLogin.controls['password'].valid&&formLogin.controls['password'].dirty"></p-message>
+    </span>
+    <br>
+    <button pButton type="submit" label="Login" [disabled]="!formLogin.valid" ></button>
+    </form>
+  </p-fieldset>
+</p-panel>

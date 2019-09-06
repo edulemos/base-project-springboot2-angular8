@@ -1,0 +1,24 @@
+<p-panel>
+  <p-header>
+    <b>BASE PROJECT FRONT</b>
+  </p-header>
+
+
+  <p-menubar [model]="items">
+    <div>
+      <button pButton label="LOGOUT" (click)="logout()" icon="pi pi-sign-out" style="margin-left:.25em"></button>
+  </div>
+
+  </p-menubar>
+
+  <div class="div-content">
+      <p-toast position="top-center"></p-toast>
+    <router-outlet></router-outlet>
+
+
+  </div>
+
+
+
+
+</p-panel>

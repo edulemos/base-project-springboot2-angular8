@@ -2,7 +2,12 @@
   <p-header>
     <div class="p-grid">
       <div class="p-col-12">
+        <div style="float: left;font-weight: bold;font-size: large;">
         BASE PROJECT FRONT
+      </div>
+      <div style="float: right">
+        <button pButton label="REGISTER" (click)="openCreateForm()"  style="margin-left:.25em"></button>
+      </div>
       </div>
 
     </div>
@@ -27,3 +32,51 @@
     </form>
   </p-fieldset>
 </p-panel>
+
+<p-dialog header="USER FORM" [(visible)]="userFormView" [responsive]="true" showEffect="fade" [modal]="true">
+    <form [formGroup]="formUser" (ngSubmit)="save()" novalidate *ngIf="userFormView">
+        <input formControlName="id" type="hidden" value="{{user.id}}" *ngIf="null != user.id">
+        <div class="p-grid">
+            <div class="p-col-12">
+                <label><b>NAME</b></label>
+            </div>
+            <div class="p-col-12">
+                <input type="text" size="60" pInputText formControlName="name" placeholder="name" style="width: 100%">
+            </div>
+        </div>
+        <div class="p-grid">
+            <div class="p-col-12">
+                <label><b>USERNAME</b></label>
+            </div>
+            <div class="p-col-12">
+                <input type="text" size="60" pInputText formControlName="username" placeholder="username"
+                    style="width: 100%">
+            </div>
+        </div>
+        <div class="p-grid">
+            <div class="p-col-12">
+                <label><b>EMAIL</b></label>
+            </div>
+            <div class="p-col-12">
+                <input type="text" size="60" pInputText formControlName="email" placeholder="email" style="width: 100%">
+            </div>
+        </div>
+        <div class="p-grid">
+            <div class="p-col-12">
+                <label><b>PASSWORD</b></label>
+            </div>
+            <div class="p-col-12">
+                <input type="password" size="60" pInputText formControlName="password" placeholder="password"
+                    style="width: 100%">
+            </div>
+        </div>
+        <div class="p-grid">
+            <div class="p-col-6">
+                <button style="width: 100%" [disabled]="!formUser.valid" pButton type="submit" label="SAVE"></button>
+            </div>
+            <div class="p-col-6">
+                <button style="width: 100%" pButton type="button" label="CANCEL" (click)="closeForm()"></button>
+            </div>
+        </div>
+    </form>
+</p-dialog>

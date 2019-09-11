@@ -30,6 +30,7 @@ import com.baseproject.services.CustomUserDetailsService;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private static final String H2_CONSOLE = "/h2-console/**";
 	private static final String LOGIN = "/login";
+	private static final String REGISTER = "/login/register";
 
 	@Autowired
     CustomUserDetailsService customUserDetailsService;
@@ -75,6 +76,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .and()
                 .authorizeRequests()
                     .antMatchers(LOGIN).permitAll()
+                    .antMatchers(REGISTER).permitAll()
                     .antMatchers(H2_CONSOLE).permitAll()
         		    .antMatchers(HttpMethod.GET,Roles.ROLE_USERS_LIST.getUrl()).access(hasRole(Roles.ROLE_USERS_LIST))		    
         		    .antMatchers(HttpMethod.POST,Roles.ROLE_USERS_SAVE.getUrl()).access(hasRole(Roles.ROLE_USERS_SAVE))		    

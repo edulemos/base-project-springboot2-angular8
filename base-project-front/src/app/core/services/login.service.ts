@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap, catchError } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
+import { User } from '../models/User';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +32,10 @@ export class LoginService {
   logout(): void {
     localStorage.clear();
     window.location.href = '/';
+  }
+
+  register(user: User) {
+    return this.http.post<User>(`${this.urlApi}/login/register`, user);
   }
 
 

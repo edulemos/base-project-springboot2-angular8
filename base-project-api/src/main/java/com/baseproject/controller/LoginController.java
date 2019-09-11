@@ -15,7 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.baseproject.dto.LoginRequest;
 import com.baseproject.dto.LoginResponse;
+import com.baseproject.model.User;
 import com.baseproject.security.JwtTokenProvider;
+import com.baseproject.services.ProfileService;
+import com.baseproject.services.UserService;
 
 @RestController
 @RequestMapping("login")
@@ -23,6 +26,13 @@ public class LoginController {
 
 	@Autowired
 	AuthenticationManager authenticationManager;
+	
+	@Autowired
+	UserService userService;
+	
+	@Autowired
+	ProfileService profileService;
+
 
 	@Autowired
 	JwtTokenProvider tokenProvider;
@@ -37,6 +47,12 @@ public class LoginController {
 
 		String jwt = tokenProvider.generateToken(authentication);
 		return ResponseEntity.ok(new LoginResponse(jwt));
+	}
+	
+	@PostMapping("/register")
+	public User create(@RequestBody User user) {
+		user.setProfiles(profileService.listAll());
+		return userService.save(user);
 	}
 
 }

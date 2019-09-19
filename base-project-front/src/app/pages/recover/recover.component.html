@@ -1,0 +1,39 @@
+<p-panel>
+
+    <p-header>
+        <div class="p-grid">
+            <div class="p-col-12">
+                <div style="float: left;font-weight: bold;font-size: large;">
+                    <a href="/login">BASE PROJECT FRONT</a>
+                </div>
+            </div>
+
+        </div>
+    </p-header>
+
+    <p-fieldset legend="RECOVER PASSWORD">
+        <p-messages [(value)]="msgs"></p-messages>
+
+        <a *ngIf="!showForm" href="/login"><button pButton label="LOGIN"
+            style="margin-left:.25em"></button></a>
+
+        <form [formGroup]="formRecover" (ngSubmit)="recoverSave()" *ngIf="showForm" novalidate autocomplete="off">
+
+            <br>
+            <span class="ui-inputgroup">
+                <input type="password" size="30" pInputText placeholder="Password" formControlName="password" autocomplete="new-password">&nbsp;
+            </span>
+            <br>
+            <span class="ui-inputgroup">
+                <input type="password" pPassword size="30" placeholder="Confirm Password" [feedback]="false" formControlName="passwordConfirm">&nbsp;
+            </span>
+            <br>
+            <button pButton type="submit" label="CONFIRM" [disabled]="!formRecover.valid"></button>
+
+
+        </form>
+
+
+    </p-fieldset>
+
+</p-panel>

@@ -38,5 +38,23 @@ export class LoginService {
     return this.http.post<User>(`${this.urlApi}/login/register`, user);
   }
 
+  recover(user: User) {
+    return this.http.post<User>(`${this.urlApi}/login/recover`, user);
+  }
+
+  recoverCheck(uuid: string) {
+    const obj = {
+      uuid: uuid
+    };
+    return this.http.post<User>(`${this.urlApi}/login/recover/check`, obj);
+  }
+
+  recoverSave(uuid: string, password: string) {
+    const obj = {
+      uuid: uuid,
+      password: password
+    };
+    return this.http.post<User>(`${this.urlApi}/login/recover/save`, obj);
+  }
 
 }

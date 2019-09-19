@@ -1,5 +1,9 @@
 package com.baseproject.controller;
 
+import java.io.IOException;
+import java.util.Map;
+
+import javax.mail.MessagingException;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +30,12 @@ public class LoginController {
 
 	@Autowired
 	AuthenticationManager authenticationManager;
-	
+
 	@Autowired
 	UserService userService;
-	
+
 	@Autowired
 	ProfileService profileService;
-
 
 	@Autowired
 	JwtTokenProvider tokenProvider;
@@ -48,11 +51,34 @@ public class LoginController {
 		String jwt = tokenProvider.generateToken(authentication);
 		return ResponseEntity.ok(new LoginResponse(jwt));
 	}
-	
+
 	@PostMapping("/register")
-	public User create(@RequestBody User user) {
+	public ResponseEntity<?> register(@RequestBody User user) {
 		user.setProfiles(profileService.listAll());
-		return userService.save(user);
+		userService.save(user);
+		return ResponseEntity.ok().build();
+	}
+
+	@PostMapping("/recover")
+	public ResponseEntity<?> recover(@RequestBody Map<String, String> body) throws IOException, MessagingException {
+		String email = body.get("email");
+		userService.sendEmailRecover(email);
+		return ResponseEntity.ok().build();
+	}
+	
+	@PostMapping("/recover/check")
+	public ResponseEntity<?> recoverCheck(@RequestBody Map<String, String> body) throws IOException, MessagingException {
+		String uuid = body.get("uuid");
+		return userService.findByUuid(uuid).map(record -> ResponseEntity.ok().body(record))
+				.orElse(ResponseEntity.notFound().build());
+	}
+	
+	@PostMapping("/recover/save")
+	public ResponseEntity<?> recoverSave(@RequestBody Map<String, String> body) throws IOException, MessagingException {
+		String uuid = body.get("uuid");
+		String password = body.get("password");
+		userService.recoverSave(uuid, password);
+		return ResponseEntity.ok().build();
 	}
 
 }

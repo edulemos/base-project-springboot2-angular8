@@ -46,6 +46,8 @@ public class User {
 	@NotBlank
 	@Size(max = 100)
 	private String password;
+	
+	private String recoverUuid;
 
 	@ManyToMany
 	@JoinTable(name = "tb_user_profile", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
@@ -111,5 +113,14 @@ public class User {
 	public void setProfiles(List<Profile> profiles) {
 		this.profiles = profiles;
 	}
+
+	public String getRecoverUuid() {
+		return recoverUuid;
+	}
+
+	public void setRecoverUuid(String recoverUuid) {
+		this.recoverUuid = recoverUuid;
+	}
+
 
 }

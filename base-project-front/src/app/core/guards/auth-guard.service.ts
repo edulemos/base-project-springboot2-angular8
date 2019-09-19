@@ -19,7 +19,7 @@ export class AuthGuardService implements CanActivate {
     }
 
     if (!authorized) {
-      this.router.navigate(['/main/acesso-negado']);
+      this.router.navigate(['/app/forbidden']);
       return false;
     }
 

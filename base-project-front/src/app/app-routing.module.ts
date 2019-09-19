@@ -7,14 +7,16 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProfilesComponent } from './pages/profiles/profiles.component';
 import { AuthGuardService as AuthGuard } from './core/guards/auth-guard.service';
+import { RecoverComponent } from './pages/recover/recover.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
+  { path: 'recover', component: RecoverComponent },
   { path: 'page-not-found', component: PageNotFoundComponent },
   {
-    path: 'main', component: MainComponent, children: [
-      { path: 'acesso-negado', component: ForbiddenComponent },
+    path: 'app', component: MainComponent, children: [
+      { path: 'forbidden', component: ForbiddenComponent },
       {
         path: 'users', component: UsersComponent, canActivate: [AuthGuard],
         data: {

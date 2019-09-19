@@ -3,10 +3,7 @@ import { Router } from '@angular/router';
 import { LoginService } from '../../core/services/login.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
-import { ProfilesService } from 'src/app/core/services/profiles.service';
 import { User } from 'src/app/core/models/User';
-import { Profile } from 'src/app/core/models/Profile';
-
 
 @Component({
   selector: 'app-login',
@@ -18,8 +15,10 @@ export class LoginComponent implements OnInit {
   login: any = {};
   formLogin: FormGroup;
   formUser: FormGroup;
+  formPwd: FormGroup;
   user: User;
   userFormView: boolean;
+  recoverPasswordView: boolean;
 
   constructor(private loginService: LoginService,
     private messageService: MessageService,
@@ -38,24 +37,29 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required],
     });
 
+    this.formPwd = fb.group({
+      email: ['', [Validators.required, Validators.email]]
+    });
+
   }
 
   ngOnInit() {
   }
 
   loginPerfom() {
+    this.messageService.clear();
 
     const username = this.formLogin.controls['username'].value;
     const password = this.formLogin.controls['password'].value;
 
     this.loginService.login(username, password).subscribe(
       result => {
-        this.router.navigateByUrl('/main');
+        this.router.navigateByUrl('/app');
       },
       (err) => {
         console.log(err);
         if (err.status === 401) {
-          this.messageService.add({ severity: 'error', summary: 'Access denied!', detail: 'Check the data you entered.' });
+          this.messageService.add({ severity: 'error', summary: 'Access denied!', detail: '' });
         } else {
           this.messageService.add({ severity: 'error', summary: 'Login internal error!  ', detail: err.message });
         }
@@ -67,6 +71,31 @@ export class LoginComponent implements OnInit {
     this.formUser.reset();
     this.userFormView = true;
     this.user = new User;
+  }
+
+  openRecoveryModal() {
+    this.recoverPasswordView = true;
+  }
+
+  recover() {
+    this.messageService.clear();
+
+    this.user = Object.assign({}, this.formPwd.value);
+    this.loginService.recover(this.user).subscribe(
+      (response) => {
+        this.messageService.add({ severity: 'info', summary: 'Success', detail: 'Email sent!' });
+      },
+      (err) => {
+        if (err.status === 400) {
+          this.messageService.add({ severity: 'warn', summary: 'Email not found!', detail: '' });
+        } else {
+          this.messageService.add({ severity: 'error', summary: 'Error!', detail: err.message });
+        }
+      });
+
+    this.closeFormPwd();
+
+
   }
 
   save() {
@@ -87,5 +116,11 @@ export class LoginComponent implements OnInit {
   closeForm() {
     this.userFormView = false;
   }
+
+  closeFormPwd() {
+    this.recoverPasswordView = false;
+    this.formPwd.reset();
+  }
+
 
 }

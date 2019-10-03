@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { AuthService } from 'src/app/core/guards/auth.service';
 
 @Component({
   selector: 'app-main',
@@ -8,15 +9,25 @@ import { MenuItem } from 'primeng/api';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
+  constructor(private guard: AuthService) { }
 
   items: MenuItem[];
 
   ngOnInit() {
-    this.items = [
-      { label: 'Users', routerLink: 'users'},
-      { label: 'Profiles', routerLink: 'profiles'},
+    this.items =  new Array();
+
+    const allMenus = [
+      { label: 'Users', routerLink: 'users', expectedRole: 'ROLE_USERS_LIST' },
+      { label: 'Profiles', routerLink: 'profiles', expectedRole: 'ROLE_PROFILES_LIST' },
     ];
+
+    allMenus.forEach((menu) => {
+      if (this.guard.isAuthorized(menu.expectedRole)) {
+        const menuItem =  { label: menu.label, routerLink: menu.routerLink};
+        this.items.push(menuItem);
+      }
+    });
+
   }
 
   logout() {

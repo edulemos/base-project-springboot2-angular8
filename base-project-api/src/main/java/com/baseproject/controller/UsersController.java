@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.baseproject.dto.PasswordRequest;
 import com.baseproject.model.User;
 import com.baseproject.services.UserService;
 
@@ -49,6 +50,22 @@ public class UsersController {
 			record.setProfiles(user.getProfiles());
 			User updated = service.save(record);
 			return ResponseEntity.ok().body(updated);
+		}).orElse(ResponseEntity.notFound().build());
+	}
+
+	@PutMapping(value = "/account/{id}")
+	public ResponseEntity<?> updateAccount(@PathVariable("id") long id, @RequestBody User user) {
+		return service.findById(id).map(record -> {
+			User updated = service.updateAccount(id, user);
+			return ResponseEntity.ok().body(updated);
+		}).orElse(ResponseEntity.notFound().build());
+	}
+	
+	@PutMapping(value = "/password/{id}")
+	public ResponseEntity<?> updatePassword(@PathVariable("id") long id, @RequestBody PasswordRequest requestDto) {
+		return service.findById(id).map(record -> {
+			service.updatePassword(id, requestDto);
+			return ResponseEntity.ok().build();
 		}).orElse(ResponseEntity.notFound().build());
 	}
 

@@ -18,11 +18,9 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
-import org.hibernate.annotations.NaturalId;
 
 @Entity
-@Table(name = "tb_user", uniqueConstraints = { @UniqueConstraint(columnNames = { "username" }),
-		@UniqueConstraint(columnNames = { "email" }) })
+@Table(name = "tb_user", uniqueConstraints = { @UniqueConstraint(columnNames = { "username" }) })
 public class User {
 
 	@Id
@@ -37,7 +35,6 @@ public class User {
 	@Size(max = 15)
 	private String username;
 
-	@NaturalId
 	@NotBlank
 	@Size(max = 40)
 	@Email

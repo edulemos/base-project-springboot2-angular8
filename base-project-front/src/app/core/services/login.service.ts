@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { tap, catchError } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { User } from '../models/User';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,9 @@ import { User } from '../models/User';
 export class LoginService {
 
   private urlApi: string;
+  user: User;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private jwtHelper: JwtHelperService) {
     this.urlApi = environment.urlApi;
   }
 
@@ -19,7 +21,9 @@ export class LoginService {
     return this.http.post(`${this.urlApi}/login`, { username, password })
       .pipe(
         tap((response: any) => {
-          localStorage.setItem('username', username);
+          this.user = this.jwtHelper.decodeToken(response.token);
+          localStorage.setItem('name', this.user.name);
+          localStorage.setItem('email', this.user.email);
           localStorage.setItem('token', response.token);
         }),
         catchError((err: any) => {

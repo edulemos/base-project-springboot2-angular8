@@ -11,9 +11,11 @@ import javax.mail.MessagingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.baseproject.dto.PasswordRequest;
 import com.baseproject.exception.BadRequestException;
 import com.baseproject.model.User;
 import com.baseproject.repository.UserRepository;
@@ -90,11 +92,45 @@ public class UserService {
 
 	public void recoverSave(String uuid, String password) {
 		Optional<User> userOptional = repository.findByRecoverUuid(uuid);
-		userOptional.orElseThrow(() -> new BadRequestException("No user found with uuid " + uuid));
+
+		if (!userOptional.isPresent()) {
+			throw new BadRequestException("No user found with uuid " + uuid);
+		}
+
 		User user = userOptional.get();
 		user.setPassword(passwordEncoder.encode(password));
 		user.setRecoverUuid(null);
 		repository.save(user);
+	}
+
+	public User updateAccount(long id, User userForm) {
+		Optional<User> userOptional = repository.findById(id);
+
+		User user = userOptional.get();
+		user.setEmail(userForm.getEmail());
+		user.setName(userForm.getName());
+		user.setUsername(userForm.getUsername());
+
+		repository.save(user);
+
+		return user;
+
+	}
+
+	public void updatePassword(long id, PasswordRequest requestDto) {
+		Optional<User> userOptional = repository.findById(id);
+		User user = userOptional.get();
+
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+		if (!encoder.matches(requestDto.getPassword(), user.getPassword())) {
+			throw new BadRequestException("invalid password");
+		}
+
+		user.setPassword(encoder.encode(requestDto.getConfirmPassword()));
+		
+		repository.save(user);
+
 	}
 
 }

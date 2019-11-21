@@ -1,14 +1,27 @@
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { User } from '../models/User';
 
 @Injectable()
 export class AuthService {
+
+  user: User;
 
   constructor(public jwtHelper: JwtHelperService) { }
 
   public isAuthenticated(): boolean {
     const token = localStorage.getItem('token');
     return !this.jwtHelper.isTokenExpired(token);
+  }
+
+  public getUserLogged(): User {
+    const name = localStorage.getItem('name');
+    const email = localStorage.getItem('email');
+    const token = localStorage.getItem('token');
+    this.user = this.jwtHelper.decodeToken(token);
+    this.user.name = name;
+    this.user.email = email;
+    return this.user;
   }
 
   public getToken() {
@@ -27,5 +40,7 @@ export class AuthService {
     });
     return b;
   }
+
+
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -8,20 +9,24 @@ import { MenuItem } from 'primeng/api';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   items: MenuItem[];
 
   ngOnInit() {
     this.items = [
-      { label: 'Users', routerLink: 'users'},
-      { label: 'Profiles', routerLink: 'profiles'},
+      { label: 'Users', routerLink: 'users' },
+      { label: 'Profiles', routerLink: 'profiles' },
     ];
   }
 
   logout() {
     window.location.href = '/';
     localStorage.clear();
+  }
+
+  account() {
+    this.router.navigateByUrl('/app/account');
   }
 
 }

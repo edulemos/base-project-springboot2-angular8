@@ -8,6 +8,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProfilesComponent } from './pages/profiles/profiles.component';
 import { AuthGuardService as AuthGuard } from './core/guards/auth-guard.service';
 import { RecoverComponent } from './pages/recover/recover.component';
+import { AccountComponent } from './pages/account/account.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'page-not-found', component: PageNotFoundComponent },
   {
     path: 'app', component: MainComponent, children: [
+      { path: 'account', component: AccountComponent },
       { path: 'forbidden', component: ForbiddenComponent },
       {
         path: 'users', component: UsersComponent, canActivate: [AuthGuard],

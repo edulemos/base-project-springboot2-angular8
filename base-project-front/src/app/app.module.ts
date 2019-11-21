@@ -40,6 +40,7 @@ import { AuthService } from './core/guards/auth.service';
 import { JwtHelperService, JwtModule, JwtModuleOptions } from '@auth0/angular-jwt';
 import { ForbiddenComponent } from './pages/forbidden/forbidden.component';
 import { RecoverComponent } from './pages/recover/recover.component';
+import { AccountComponent } from './pages/account/account.component';
 
 
 export function tokenGetter() {
@@ -61,7 +62,8 @@ const JWT_Module_Options: JwtModuleOptions = {
     ProfilesComponent,
     UsersComponent,
     ForbiddenComponent,
-    RecoverComponent
+    RecoverComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,

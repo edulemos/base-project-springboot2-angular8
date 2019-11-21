@@ -62,14 +62,7 @@
 <p-dialog header="USER FORM" [(visible)]="userFormView" [responsive]="true" showEffect="fade" [modal]="true">
     <form [formGroup]="formUser" (ngSubmit)="save()" novalidate *ngIf="userFormView">
         <input formControlName="id" type="hidden" value="{{user.id}}" *ngIf="null != user.id">
-        <div class="p-grid">
-            <div class="p-col-12">
-                <label><b>NAME</b></label>
-            </div>
-            <div class="p-col-12">
-                <input type="text" size="60" pInputText formControlName="name" placeholder="name" style="width: 100%">
-            </div>
-        </div>
+
         <div class="p-grid">
             <div class="p-col-12">
                 <label><b>USERNAME</b></label>
@@ -77,6 +70,14 @@
             <div class="p-col-12">
                 <input type="text" size="60" pInputText formControlName="username" placeholder="username"
                     style="width: 100%">
+            </div>
+        </div>
+        <div class="p-grid">
+            <div class="p-col-12">
+                <label><b>NAME</b></label>
+            </div>
+            <div class="p-col-12">
+                <input type="text" size="60" pInputText formControlName="name" placeholder="name" style="width: 100%">
             </div>
         </div>
         <div class="p-grid">

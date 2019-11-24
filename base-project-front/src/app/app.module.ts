@@ -64,7 +64,7 @@ const JWT_Module_Options: JwtModuleOptions = {
     UsersComponent,
     ForbiddenComponent,
     RecoverComponent,
-    AccountComponent
+    AccountComponent,
     GuardDirective
   ],
   imports: [

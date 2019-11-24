@@ -41,6 +41,7 @@ import { JwtHelperService, JwtModule, JwtModuleOptions } from '@auth0/angular-jw
 import { ForbiddenComponent } from './pages/forbidden/forbidden.component';
 import { RecoverComponent } from './pages/recover/recover.component';
 import { AccountComponent } from './pages/account/account.component';
+import { GuardDirective } from './shared/directive/GuardDirective.directive';
 
 
 export function tokenGetter() {
@@ -64,6 +65,7 @@ const JWT_Module_Options: JwtModuleOptions = {
     ForbiddenComponent,
     RecoverComponent,
     AccountComponent
+    GuardDirective
   ],
   imports: [
     BrowserModule,

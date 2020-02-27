@@ -9,6 +9,7 @@ import { ProfilesComponent } from './pages/profiles/profiles.component';
 import { AuthGuardService as AuthGuard } from './core/guards/auth-guard.service';
 import { RecoverComponent } from './pages/recover/recover.component';
 import { AccountComponent } from './pages/account/account.component';
+import { UploadComponent } from './pages/upload/upload.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -29,6 +30,12 @@ const routes: Routes = [
         path: 'profiles', component: ProfilesComponent, canActivate: [AuthGuard],
         data: {
           expectedRole: 'ROLE_PROFILES_LIST'
+        }
+      },
+      {
+        path: 'upload', component: UploadComponent, canActivate: [AuthGuard],
+        data: {
+          expectedRole: 'ROLE_UPLOAD'
         }
       }
 

@@ -1,0 +1,19 @@
+<p-panel header="UPLOAD">
+    <div class="p-grid">
+        <div class="p-col-12">
+
+            <p-fileUpload *ngIf="!sent" customUpload="true" (uploadHandler)="onUpload($event)" name="file"
+                maxFileSize="10000000">
+            </p-fileUpload>
+
+            <p-card header="UPLOAD OK" *ngIf="sent">
+                <h3>Name: {{dto.name}}</h3>
+                <h3>Content Type: {{dto.contentType}}</h3>
+                <h3>Size: {{dto.size}}</h3>
+                <button style="width: 25%" pButton type="button" label="RESET" (click)="reset()"></button>
+            </p-card>
+
+        </div>
+
+    </div>
+</p-panel>

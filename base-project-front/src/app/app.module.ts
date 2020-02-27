@@ -26,6 +26,7 @@ import { PickListModule } from 'primeng/picklist';
 import {DialogModule} from 'primeng/dialog';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ConfirmationService} from 'primeng/api';
+import {FileUploadModule} from 'primeng/fileupload';
 
 import { LoginComponent } from './pages/login/login.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
@@ -42,6 +43,7 @@ import { ForbiddenComponent } from './pages/forbidden/forbidden.component';
 import { RecoverComponent } from './pages/recover/recover.component';
 import { AccountComponent } from './pages/account/account.component';
 import { GuardDirective } from './shared/directive/GuardDirective.directive';
+import { UploadComponent } from './pages/upload/upload.component';
 
 
 export function tokenGetter() {
@@ -65,7 +67,8 @@ const JWT_Module_Options: JwtModuleOptions = {
     ForbiddenComponent,
     RecoverComponent,
     AccountComponent,
-    GuardDirective
+    GuardDirective,
+    UploadComponent
   ],
   imports: [
     BrowserModule,
@@ -91,6 +94,7 @@ const JWT_Module_Options: JwtModuleOptions = {
     PickListModule,
     DialogModule,
     ConfirmDialogModule,
+    FileUploadModule,
     JwtModule.forRoot(JWT_Module_Options)
 
   ],

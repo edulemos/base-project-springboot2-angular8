@@ -20,6 +20,7 @@ export class MainComponent implements OnInit {
     const allMenus = [
       { label: 'Users', routerLink: 'users', expectedRole: 'ROLE_USERS_LIST' },
       { label: 'Profiles', routerLink: 'profiles', expectedRole: 'ROLE_PROFILES_LIST' },
+      { label: 'Upload', routerLink: 'upload', expectedRole: 'ROLE_UPLOAD' },
     ];
 
     allMenus.forEach((menu) => {

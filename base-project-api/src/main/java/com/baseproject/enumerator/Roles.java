@@ -9,7 +9,8 @@ public enum Roles {
 	ROLE_USERS_LIST("/users/**", "users list"),
 	ROLE_USERS_SAVE("/users/**", "users save"),
 	ROLE_USERS_UPDATE("/users/**", "users update"),
-	ROLE_USERS_DELETE("/users/**", "users delete");
+	ROLE_USERS_DELETE("/users/**", "users delete"),
+	ROLE_UPLOAD("/upload/**", "upload files");
 
 	private String url;
 	private String description;

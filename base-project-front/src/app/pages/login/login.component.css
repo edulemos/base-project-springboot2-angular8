@@ -1,0 +1,6 @@
+@media screen and (min-width: 500px) {  
+    .center-login {
+      width: 500px;
+      margin: 0 auto;
+    }
+  }

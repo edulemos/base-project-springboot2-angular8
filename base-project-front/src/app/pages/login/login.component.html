@@ -1,43 +1,67 @@
-<p-panel>
-    <p-header>
+<div class="p-grid">
+
+    <div class="p-col-12" style="background: #004077">
+        <img src="assets/logo.png">
+        <div style="padding: 10px;float: right;">
+            <button pButton label="REGISTER" (click)="openCreateForm()"></button>
+        </div>
+    </div>
+
+    <div class="p-col-12" style="background:whitesmoke; min-height: 1000px; ">
+        <br><br>
+
+        <div class="center-login">
+            <p-panel>
+                <p-header>
+                    <b>LOGIN</b>
+                </p-header>
+                <p-messages [(value)]="msgs"></p-messages>
+                <form [formGroup]="formLogin" (ngSubmit)="loginPerfom()" novalidate>
+                    <br>
+                    <input style="width: 100%" type="text" size="30" pInputText placeholder="username"
+                        formControlName="username">&nbsp;
+                    <br><br>
+                    <input style="width: 100%" type="password" pPassword size="30" [feedback]="false"
+                        placeholder="password" formControlName="password">&nbsp;
+                    <br><br>
+                    <button style="width: 50%" pButton type="submit" label="SUBMIT"
+                        [disabled]="!formLogin.valid"></button>
+                    &nbsp;
+                    <a style="float: right; color: #551A8B;" (click)="openRecoveryModal()">forgot your password?</a>
+                </form>
+            </p-panel>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+<p-dialog header="RECOVER PASSWORD" [(visible)]="recoverPasswordView" [responsive]="true" showEffect="fade"
+    [modal]="true">
+    <form [formGroup]="formPwd" (ngSubmit)="recover()" novalidate>
         <div class="p-grid">
-            <div class="p-col-12">
-                <div style="float: left;font-weight: bold;font-size: large;">
-                    <a>BASE PROJECT FRONT</a>
+
+            <div class="p-grid" style="padding-top: 10px">
+                <div class="p-col-12">
+                    <label><b>Enter your registered email:</b></label>
                 </div>
-                <div style="float: right">
-                    <a href="http://localhost:8080/h2-console" target="_blank"><button pButton label="H2 CONSOLE"
-                            style="margin-left:.25em"></button></a>
-                    <button pButton label="REGISTER" (click)="openCreateForm()" style="margin-left:.25em"></button>
+                <div class="p-col-12">
+                    <input type="text" size="60" pInputText formControlName="email" placeholder="email"
+                        style="width: 100%">
+                </div>
+                <div class="p-col-6">
+                    <button style="width: 100%" [disabled]="!formPwd.valid" pButton type="submit"
+                        label="SUBMIT"></button>
+                </div>
+                <div class="p-col-6">
+                    <button style="width: 100%" pButton type="button" label="CANCEL" (click)="closeFormPwd()"></button>
                 </div>
             </div>
-
         </div>
-    </p-header>
-    <p-fieldset legend="LOGIN">
-        <p-messages [(value)]="msgs"></p-messages>
-        <form [formGroup]="formLogin" (ngSubmit)="loginPerfom()" novalidate>
-
-            <br>
-            <span class="ui-inputgroup">
-                <input type="text" size="30" pInputText placeholder="Username" formControlName="username">&nbsp;
-                <p-message severity="error" text="Username is required"
-                    *ngIf="!formLogin.controls['username'].valid&&formLogin.controls['username'].dirty"></p-message>
-            </span>
-            <br>
-            <span class="ui-inputgroup">
-                <input type="password" pPassword size="30" [feedback]="false" formControlName="password">&nbsp;
-                <p-message severity="error" text="Password is required"
-                    *ngIf="!formLogin.controls['password'].valid&&formLogin.controls['password'].dirty"></p-message>
-            </span>
-            <br>
-            <button pButton type="submit" label="Login" [disabled]="!formLogin.valid"></button>
-            &nbsp;
-            <a (click)="openRecoveryModal()">forgot your password?</a>
-
-        </form>
-    </p-fieldset>
-</p-panel>
+    </form>
+</p-dialog>
 
 <p-dialog header="REGISTER" [(visible)]="userFormView" [responsive]="true" showEffect="fade" [modal]="true">
     <form [formGroup]="formUser" (ngSubmit)="save()" novalidate *ngIf="userFormView">
@@ -81,30 +105,6 @@
             </div>
             <div class="p-col-6">
                 <button style="width: 100%" pButton type="button" label="CANCEL" (click)="closeForm()"></button>
-            </div>
-        </div>
-    </form>
-</p-dialog>
-
-<p-dialog header="RECOVER PASSWORD" [(visible)]="recoverPasswordView" [responsive]="true" showEffect="fade" [modal]="true">
-    <form [formGroup]="formPwd" (ngSubmit)="recover()" novalidate >
-        <div class="p-grid">
-
-            <div class="p-grid" style="padding-top: 10px" >
-                <div class="p-col-12">
-                    <label><b>Enter your registered email:</b></label>
-                </div>
-                <div class="p-col-12">
-                    <input type="text" size="60" pInputText formControlName="email" placeholder="email"
-                        style="width: 100%">
-                </div>
-                <div class="p-col-6">
-                    <button style="width: 100%" [disabled]="!formPwd.valid" pButton type="submit"
-                        label="SEND"></button>
-                </div>
-                <div class="p-col-6">
-                    <button style="width: 100%" pButton type="button" label="CANCEL" (click)="closeFormPwd()"></button>
-                </div>
             </div>
         </div>
     </form>

@@ -1,92 +1,89 @@
-<p-fieldset legend="User">
 
     <div class="p-grid">
 
         <div class="p-col-6">
-            <b>Account</b>
-            <hr><br>
 
-            <form [formGroup]="formUser" (ngSubmit)="save()" novalidate>
-                <div class="p-grid">
-                    <div class="p-col-12">
-                        <label><b>USERNAME</b></label>
+            <p-panel header="ACCOUNT">
+
+                <form [formGroup]="formUser" (ngSubmit)="save()" novalidate>
+                    <div class="p-grid">
+                        <div class="p-col-12">
+                            <label><b>USERNAME</b></label>
+                        </div>
+                        <div class="p-col-12">
+                            <input type="text" size="60" pInputText formControlName="username" placeholder="username"
+                                style="width: 90%; font-weight: bold;" disabled>
+                        </div>
                     </div>
-                    <div class="p-col-12">
-                        <input type="text" size="60" pInputText formControlName="username" placeholder="username"
-                            style="width: 90%; font-weight: bold;" disabled>
+                    <div class="p-grid">
+                        <div class="p-col-12">
+                            <label><b>NAME</b></label>
+                        </div>
+                        <div class="p-col-12">
+                            <input type="text" size="60" pInputText formControlName="name" placeholder="name"
+                                style="width: 90%">
+                        </div>
                     </div>
-                </div>
-                <div class="p-grid">
-                    <div class="p-col-12">
-                        <label><b>NAME</b></label>
+                    <div class="p-grid">
+                        <div class="p-col-12">
+                            <label><b>EMAIL</b></label>
+                        </div>
+                        <div class="p-col-12">
+                            <input type="text" size="60" pInputText formControlName="email" placeholder="email"
+                                style="width: 90%">
+                        </div>
                     </div>
-                    <div class="p-col-12">
-                        <input type="text" size="60" pInputText formControlName="name" placeholder="name"
-                            style="width: 90%">
+                    <br>
+                    <div class="p-grid">
+                        <div class="p-col-6">
+                            <button style="width: 100%" [disabled]="!formUser.valid" pButton type="submit"
+                                label="SAVE"></button>
+                        </div>
                     </div>
-                </div>
-                <div class="p-grid">
-                    <div class="p-col-12">
-                        <label><b>EMAIL</b></label>
-                    </div>
-                    <div class="p-col-12">
-                        <input type="text" size="60" pInputText formControlName="email" placeholder="email"
-                            style="width: 90%">
-                    </div>
-                </div>
-                <br>
-                <div class="p-grid">
-                    <div class="p-col-6">
-                        <button style="width: 100%" [disabled]="!formUser.valid" pButton type="submit"
-                            label="SAVE"></button>
-                    </div>
-                </div>
-            </form>
+                </form>
+            </p-panel>
         </div>
 
         <div class="p-col-6">
 
-            <b>Change Password</b>
-            <hr><br>
+            <p-panel header="CHANGE PASSWORD">
 
-            <form [formGroup]="formPwd" (ngSubmit)="savepwd()" novalidate>
-                <div class="p-grid">
-                    <div class="p-col-12">
-                        <label><b>PASSWORD</b></label>
-                    </div>
-                    <div class="p-col-12">
-                        <input type="password" size="60" pInputText formControlName="password" placeholder="password"
-                            style="width: 90%;">
-                    </div>
-                </div>
-                <div class="p-grid">
-                    <div class="p-col-12">
-                        <label><b>NEW PASSWORD</b></label>
-                    </div>
-                    <div class="p-col-12">
-                        <input type="password" size="60" pInputText formControlName="newPassword" placeholder="new password"
-                            style="width: 90%">
-                    </div>
-                </div>
-                <div class="p-grid">
-                    <div class="p-col-12">
-                        <label><b>CONFIRM NEW PASSWORD</b></label>
-                    </div>
-                    <div class="p-col-12">
-                        <input type="password" size="60" pInputText formControlName="confirmPassword" placeholder="new password confirm"
-                            style="width: 90%">
-                    </div>
-                </div>
-                <br>
-                <div class="p-grid">
-                    <div class="p-col-6">
-                        <button style="width: 100%" [disabled]="!formPwd.valid" pButton type="submit"
-                            label="CHANGE PASSWORD "></button>
-                    </div>
-                </div>
-            </form>
-        </div>
 
-    </div>
+                <form [formGroup]="formPwd" (ngSubmit)="savepwd()" novalidate>
+                    <div class="p-grid">
+                        <div class="p-col-12">
+                            <label><b>PASSWORD</b></label>
+                        </div>
+                        <div class="p-col-12">
+                            <input type="password" size="60" pInputText formControlName="password"
+                                placeholder="password" style="width: 90%;">
+                        </div>
+                    </div>
+                    <div class="p-grid">
+                        <div class="p-col-12">
+                            <label><b>NEW PASSWORD</b></label>
+                        </div>
+                        <div class="p-col-12">
+                            <input type="password" size="60" pInputText formControlName="newPassword"
+                                placeholder="new password" style="width: 90%">
+                        </div>
+                    </div>
+                    <div class="p-grid">
+                        <div class="p-col-12">
+                            <label><b>CONFIRM NEW PASSWORD</b></label>
+                        </div>
+                        <div class="p-col-12">
+                            <input type="password" size="60" pInputText formControlName="confirmPassword"
+                                placeholder="confirm password" style="width: 90%">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="p-grid">
+                        <div class="p-col-6">
+                            <button style="width: 100%" [disabled]="!formPwd.valid" pButton type="submit"
+                                label="SUBMIT"></button>
+                        </div>
+                    </div>
+                </form>
+            </p-panel>
 
-</p-fieldset>

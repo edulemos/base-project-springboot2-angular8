@@ -1,25 +1,36 @@
-<p-panel>
-  <p-header>
-    <b>BASE PROJECT FRONT</b>
-  </p-header>
+<div class="p-grid" style="background:whitesmoke;">
 
+  <div class="p-col-12" style="background: #004077">
 
-  <p-menubar [model]="items">
-    <div>
-      <button pButton label="USER" (click)="account()" icon="pi pi-user" style="margin-left:.25em"></button>
-      <button pButton label="LOGOUT" (click)="logout()" icon="pi pi-sign-out" style="margin-left:.25em"></button>
+    <div class="p-grid">
+
+      <div class="p-col-10" style="background: #004077">
+        <img src="assets/logo.png">
+      </div>
+
+      <div class="p-col-2">
+        <br>
+
+        <button pButton label="USER" (click)="account()"></button>
+        &nbsp;&nbsp;
+
+        <button pButton label="LOGOUT" (click)="logout()"></button>
+        
+      </div>
+
+    </div>
+
   </div>
 
-  </p-menubar>
+  <div class="p-col-2" style="padding-top: 18px;">
+    <p-panelMenu [model]="items" [style]="{'width':'100%'}" [multiple]="false"></p-panelMenu>
+  </div>
 
-  <div class="div-content">
+  <div class="p-col-10">
+    <div class="div-content" style="min-height: 1000px; ">
       <p-toast position="top-center"></p-toast>
-    <router-outlet></router-outlet>
-
-
+      <router-outlet></router-outlet>
+    </div>
   </div>
 
-
-
-
-</p-panel>
+</div>

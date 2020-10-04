@@ -27,6 +27,7 @@ import {DialogModule} from 'primeng/dialog';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ConfirmationService} from 'primeng/api';
 import {FileUploadModule} from 'primeng/fileupload';
+import {PanelMenuModule} from 'primeng/panelmenu';
 
 import { LoginComponent } from './pages/login/login.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
@@ -95,6 +96,7 @@ const JWT_Module_Options: JwtModuleOptions = {
     DialogModule,
     ConfirmDialogModule,
     FileUploadModule,
+    PanelMenuModule,
     JwtModule.forRoot(JWT_Module_Options)
 
   ],

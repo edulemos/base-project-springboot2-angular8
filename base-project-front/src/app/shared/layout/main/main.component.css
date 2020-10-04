@@ -1,7 +1,28 @@
-.div-content{
+.div-content {
+  padding-top: 10px;
   min-height: 510px;
 }
 
-.paneldiv{
-  background-color: aqua;
+::ng-deep body .ui-panel .ui-panel-titlebar {
+  border: 1px solid #c8c8c8;
+  padding: 0.571em 1em;
+  background-color: rgb(0, 64, 119);
+  color: white;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
+
+::ng-deep body .ui-menubar {
+  padding: 0;
+  background-color: silver;
+  border: 1px solid #c8c8c8;
+}
+
+::ng-deep body .ui-tooltip .ui-tooltip-text	 {
+  padding: 5;
+  background-color: rgb(0, 64, 119);
+  border: 1px solid #c8c8c8;
+}
+

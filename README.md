@@ -1,7 +1,7 @@
-# base-project-springboot2-angular8
+# base-project-springboot2
 
-* Angular 8 
-* Primeng 8
+* Angular 10
+* Primeng 10
   
 * login jwt token
 * crud users
